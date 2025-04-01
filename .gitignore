@@ -99,4 +99,4 @@ fabric.properties
 !.idea/runConfigurations
 
 ### dotenv ###
-.env
+QA_Hub/QA_Hub/.env
