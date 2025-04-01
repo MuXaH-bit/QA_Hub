@@ -100,3 +100,4 @@ fabric.properties
 
 ### dotenv ###
 QA_Hub/QA_Hub/.env
+/QA_Hub/db.sqlite3
