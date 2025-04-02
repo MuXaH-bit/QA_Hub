@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container w-50 float-lg-start">
+    <div class="d-flex align-items-center gap-2 mb-4">
+        <h1>Registration</h1>
+    </div>
+
+    <p class="text-danger fw-bold">Sorry, this email address already registered!</p>
+    <form>
+        <div class="mb-3">
+            <label for="login" class="form-label">Login</label>
+            <input type="text" class="form-control" id="login" value="dr_pepper">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" value="dr.pepper@mail.ru">
+        </div>
+        <div class="mb-3">
+            <label for="nickname" class="form-label">NickName</label>
+            <input type="text" class="form-control" id="nickname" value="Dr. Pepper">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" value="********">
+        </div>
+        <div class="mb-3">
+            <label for="repeat-password" class="form-label">Repeat password</label>
+            <input type="password" class="form-control" id="repeat-password" value="********">
+        </div>
+        <div class="mb-3">
+            <label for="avatar" class="form-label">Upload avatar</label>
+            <input type="file" class="form-control" id="avatar">
+        </div>
+        <button type="submit" class="btn btn-primary">Register!</button>
+    </form>
+</div>
+
+{% endblock content %}

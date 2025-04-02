@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex align-items-center gap-2 mb-4">
+    <h1>Tag: <strong>{{ tag }}</strong></h1>
+</div>
+
+<articles class="d-flex gap-3 flex-column">
+
+    {% include "question_card.html" %}
+    {% include "question_card.html" %}
+    {% include "question_card.html" %}
+
+    <nav class="mt-3">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">53</a></li>
+        </ul>
+    </nav>
+
+</articles>
+
+{% endblock content %}
