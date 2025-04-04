@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 
+
 def homepage_view(request):
     questions = []
     for i in range(1, 30):
@@ -10,19 +11,23 @@ def homepage_view(request):
             'text': 'text' + str(i)
         })
 
-    paginator = Paginator(questions, 10)  # Разбиваем на страницы по 10 элементов
-
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    data = {'page_obj': page_obj}
+    data = {'page_obj': paginate(questions, request, 10)}
 
     return render(request, 'index.html', context=data)
 
 
 def tag_view(request, tag):
+    questions = []
+    for i in range(1, 1000):
+        questions.append({
+            'title': 'title ' + str(i),
+            'id': i,
+            'text': 'text' + str(i)
+        })
+
     data = {
         "tag": tag,
+        "page_obj": paginate(questions, request, 10),
     }
     return render(request, 'tag.html', context=data)
 
@@ -48,3 +53,11 @@ def settings_view(request):
 
 def ask_view(request):
     return render(request, 'ask.html')
+
+
+def paginate(objects_list, request, per_page=10):
+    paginator = Paginator(objects_list, per_page)  # Разбиваем на страницы по 10 элементов
+
+    page_number = request.GET.get("page")
+    page = paginator.get_page(page_number)
+    return page

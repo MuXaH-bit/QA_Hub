@@ -11,7 +11,10 @@
             </div>
             <div class="col d-flex flex-column justify-content-between">
                 <div>
-                    <h5 class="card-title">{{ question.title }}</h5>
+                    <a href="{% url 'question' question_id=question.id %}"
+                       class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
+                        <h5 class="card-title">{{ question.title }}</h5>
+                    </a>
                     <p class="card-text">
                         {{question.text}}
                     </p>
@@ -22,8 +25,9 @@
                     </div>
                     <div class="col">
                         <span>Tags:</span>
-                        <span class="badge rounded-pill text-bg-primary">Primary</span>
-                        <span class="badge rounded-pill text-bg-secondary">Secondary</span>
+
+                        {% include "tag_block.html" with tag="Primary" style="primary" %}
+                        {% include "tag_block.html" with tag="Secondary" style="secondary" %}
 
                     </div>
                 </div>

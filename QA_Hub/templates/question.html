@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <div class="container mt-4">
 
     <div class="card">
@@ -17,17 +16,15 @@
                 <div class="col d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to
-                            additional
-                            content.
-                        </p>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content. </p>
                     </div>
                     <div class="row">
 
                         <div class="col">
                             <span>Tags:</span>
-                            <span class="badge rounded-pill text-bg-primary">Primary</span>
-                            <span class="badge rounded-pill text-bg-secondary">Secondary</span>
+
+                            {% include "tag_block.html" with tag="Primary" style="primary" %}
+                            {% include "tag_block.html" with tag="Secondary" style="secondary" %}
 
                         </div>
                     </div>

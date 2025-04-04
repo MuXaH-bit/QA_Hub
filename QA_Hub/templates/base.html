@@ -28,14 +28,16 @@
             <section class="mb-3">
                 <h3>Popular tags</h3>
                 <div>
-                    <a href="{% url 'tag' tag='Primary' %}"><span class="badge rounded-pill text-bg-primary">Primary</span></a>
-                    <a href="{% url 'tag' tag='Secondary' %}"><span class="badge rounded-pill text-bg-secondary">Secondary</span></a>
-                    <a href="{% url 'tag' tag='Success' %}"><span class="badge rounded-pill text-bg-success">Success</span></a>
-                    <a href="{% url 'tag' tag='Danger' %}"><span class="badge rounded-pill text-bg-danger">Danger</span></a>
-                    <a href="{% url 'tag' tag='Warning' %}"><span class="badge rounded-pill text-bg-warning">Warning</span></a>
-                    <a href="{% url 'tag' tag='Info' %}"><span class="badge rounded-pill text-bg-info">Info</span></a>
-                    <a href="{% url 'tag' tag='Light' %}"><span class="badge rounded-pill text-bg-light">Light</span></a>
-                    <a href="{% url 'tag' tag='Dark' %}"><span class="badge rounded-pill text-bg-dark">Dark</span></a>
+
+                    {% include "tag_block.html" with tag="Primary" style="primary" %}
+                    {% include "tag_block.html" with tag="Secondary" style="secondary" %}
+                    {% include "tag_block.html" with tag="Success" style="success" %}
+                    {% include "tag_block.html" with tag="Danger" style="danger" %}
+                    {% include "tag_block.html" with tag="Warning" style="warning" %}
+                    {% include "tag_block.html" with tag="Info" style="info" %}
+                    {% include "tag_block.html" with tag="Light" style="light" %}
+                    {% include "tag_block.html" with tag="Dark" style="dark" %}
+                    
                 </div>
             </section>
 
