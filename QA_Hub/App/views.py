@@ -1,29 +1,37 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from App.models import Question, Tag
 
 
-def homepage_view(request):
-    questions = []
-    for i in range(1, 30):
-        questions.append({
-            'title': 'title ' + str(i),
-            'id': i,
-            'text': 'text' + str(i)
-        })
+def new_view(request):
+    questions = Question.objects.new_questions()
 
-    data = {'page_obj': paginate(questions, request, 10)}
+    data = {
+        'title': 'New Questions',
+        'url': 'hot',
+        'url_title': 'Hot Questions',
+        'page_obj': paginate(questions, request, 10),
+    }
+
+    return render(request, 'index.html', context=data)
+
+
+def hot_view(request):
+    questions = Question.objects.best_questions()
+
+    data = {
+        'title': 'Hot Questions',
+        'url': 'new',
+        'url_title': 'New Questions',
+        'page_obj': paginate(questions, request, 10),
+    }
 
     return render(request, 'index.html', context=data)
 
 
 def tag_view(request, tag):
-    questions = []
-    for i in range(1, 1000):
-        questions.append({
-            'title': 'title ' + str(i),
-            'id': i,
-            'text': 'text' + str(i)
-        })
+    tag_obj = get_object_or_404(Tag, name=tag)
+    questions = Question.objects.filter(tags=tag_obj)
 
     data = {
         "tag": tag,
@@ -33,8 +41,12 @@ def tag_view(request, tag):
 
 
 def question_view(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    answers = question.answers.all()
+
     data = {
-        "question_id": question_id,
+        "question": question,
+        "answers": answers,
     }
     return render(request, 'question.html', context=data)
 

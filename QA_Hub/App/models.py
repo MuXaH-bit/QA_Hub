@@ -10,8 +10,15 @@ class Profile(models.Model):
         return self.user.username
 
 
+class TagManager(models.Manager):
+    def top_tags(self):
+        return self.annotate(question_count=models.Count('questions')).order_by('-question_count')[:10]
+
+
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
+    objects = TagManager()
 
     def __str__(self):
         return self.name
@@ -19,7 +26,9 @@ class Tag(models.Model):
 
 class QuestionManager(models.Manager):
     def best_questions(self):
-        return self.order_by('-likes')
+        return self.annotate(
+            like_count=models.Count('question_likes', filter=models.Q(question_likes__is_like=True))).order_by(
+            '-like_count')
 
     def new_questions(self):
         return self.order_by('-created_at')
@@ -31,7 +40,6 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag, related_name='questions')
-    likes = models.IntegerField(default=0)
 
     objects = QuestionManager()
 
@@ -45,7 +53,6 @@ class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     is_correct = models.BooleanField(default=False)
-    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return f"Answer by {self.author.username}"

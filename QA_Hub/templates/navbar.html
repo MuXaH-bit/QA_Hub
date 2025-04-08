@@ -1,25 +1,27 @@
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'homepage' %}">Q&A Hub</a>
+{% load static %}
 
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Ask</button>
-            </form>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'new' %}">Q&A Hub</a>
 
-            <div class="d-flex gap-2 align-items-center">
-                <div>
-                    <img src="hello.jpg" class="img-thumbnail" alt="...">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Ask</button>
+        </form>
+
+        <div class="d-flex gap-2 align-items-center">
+            <div>
+                <img src="{% static 'img/avatar.png' %}" class="img-fluid" width="50" alt="Avatar">
+            </div>
+            <div class="content">
+                <div class="content-name">Dr. Pepper</div>
+                <div class="content-links">
+                    <a href="{% url 'settings' %}">Settings</a>
+                    <a href="#">Log out</a>
                 </div>
-                <div class="content">
-                    <div class="content__name">Dr. Pepper</div>
-                    <div class="content__links">
-                        <a href="{% url 'settings' %}">Settings</a>
-                        <a href="#">Log out</a>
-                    </div>
-                </div>
-
             </div>
 
         </div>
-    </nav>
+
+    </div>
+</nav>

@@ -1,11 +1,12 @@
+{% load static %}
+
 <div class="card p-3 mb-2">
     <div class="d-flex align-items-start">
-        <img src="avatar.jpg" alt="Avatar" class="img-thumbnail me-3" width="50">
+        <img src="{% static 'img/avatar.png' %}" alt="Avatar" class="img-thumbnail me-3" width="50">
         <div>
-            <p>First of all I would like to thank you for the invitation to participate in such a ... Russia is
-                the huge territory which in many respects needs to be rendered habitable.</p>
+            <p>{{ answer.content }}</p>
             <div class="d-flex align-items-center">
-                <input type="checkbox" checked class="me-2">
+                <input type="checkbox" {% if answer.is_correct %} checked {% endif %} class="me-2">
                 <span>Correct!</span>
             </div>
         </div>

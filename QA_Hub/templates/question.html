@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -8,23 +9,23 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-2">
-                    <div style="height: 100px;" class="border mb-2 w-100">
-                        <img src="#" alt="img" class="img-fluid">
+                    <div class="border mb-2 w-100">
+                        <img src="{% static 'img/avatar.png' %}" alt="img" class="img-fluid">
                     </div>
-
                 </div>
                 <div class="col d-flex flex-column justify-content-between">
                     <div>
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content. </p>
+                        <h5 class="card-title">{{ question.title }}</h5>
+                        <p class="card-text">{{ question.content }}</p>
                     </div>
                     <div class="row">
 
                         <div class="col">
                             <span>Tags:</span>
 
-                            {% include "tag_block.html" with tag="Primary" style="primary" %}
-                            {% include "tag_block.html" with tag="Secondary" style="secondary" %}
+                            {% for tag in question.tags.all %}
+                                {% include "tag_block.html" with tag=tag style="primary" %}
+                            {% endfor %}
 
                         </div>
                     </div>
@@ -35,11 +36,9 @@
 
     <div class="mt-3">
 
-        {% include "answer_card.html" %}
-        {% include "answer_card.html" %}
-        {% include "answer_card.html" %}
-        {% include "answer_card.html" %}
-        {% include "answer_card.html" %}
+        {% for answer in answers %}
+            {% include "answer_card.html" with answer=answer %}
+        {% endfor %}
 
     </div>
 

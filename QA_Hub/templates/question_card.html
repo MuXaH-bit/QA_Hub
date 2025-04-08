@@ -1,33 +1,31 @@
+{% load static %}
+
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-2">
-                <div style="height: 100px;" class="border mb-2 w-100">
-                    <img src="#" alt="img" class="img-fluid">
+                <div class="border mb-2 w-100">
+                    <img src="{% static 'img/avatar.png' %}" alt="Avatar" class="img-fluid">
                 </div>
                 <div>
-                    <input type="number" class="form-control" value="5">
+                    <input type="number" class="form-control" value="{{ question.question_likes.all.count }}">
                 </div>
             </div>
             <div class="col d-flex flex-column justify-content-between">
                 <div>
-                    <a href="{% url 'question' question_id=question.id %}"
-                       class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
-                        <h5 class="card-title">{{ question.title }}</h5>
-                    </a>
-                    <p class="card-text">
-                        {{question.text}}
-                    </p>
+                    <h5 class="card-title">{{ question.title }}</h5>
+                    <p class="card-text"> {{question.content}}</p>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <a href="{% url 'question' question_id=question.id %}">Answers (3)</a>
+                        <a href="{% url 'question' question_id=question.id %}">Answers ({{ question.answers.all.count }})</a>
                     </div>
                     <div class="col">
                         <span>Tags:</span>
 
-                        {% include "tag_block.html" with tag="Primary" style="primary" %}
-                        {% include "tag_block.html" with tag="Secondary" style="secondary" %}
+                        {% for tag in question.tags.all %}
+                            {% include "tag_block.html" with tag=tag style="primary" %}
+                        {% endfor %}
 
                     </div>
                 </div>
