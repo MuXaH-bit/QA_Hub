@@ -21,7 +21,12 @@ services:
       - ./QA_Hub:/usr/src/QA_Hub
     ports:
       - 8000:8000
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: >
+      bash -c "
+        python manage.py makemigrations &&
+        python manage.py migrate --noinput &&
+        python manage.py runserver 0.0.0.0:8000 --insecure
+      "
     depends_on:
       - postgres
 
