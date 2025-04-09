@@ -10,7 +10,7 @@ Q&A Hub – это сервис позволит пользователям Ин
 ### 1. Клонируйте репозиторий
 
 ```bash
-git https://github.com/MuXaH-bit/QA_Hub.git
+git clone https://github.com/MuXaH-bit/QA_Hub.git
 cd QA_Hub
 ```
 
